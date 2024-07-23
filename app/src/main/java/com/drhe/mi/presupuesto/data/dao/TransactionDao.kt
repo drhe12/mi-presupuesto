@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 interface TransactionDao {
 
     @Query("SELECT * FROM transaction_table order by date desc")
-    fun getAllTransactions() : Flow<Transaction>
+    fun getAllTransactions() : Flow<List<Transaction>>
 
     @Query("SELECT * FROM transaction_table WHERE id = :transactionId")
     fun getTransaction(transactionId: Int) : Flow<Transaction>
@@ -32,14 +32,14 @@ interface TransactionDao {
     suspend fun deleteAllTransactions()
 
     @Query("SELECT * FROM transaction_table WHERE type = 'INCOME' order by date desc")
-    fun searchIncomeTransactions() : Flow<Transaction>
+    fun searchIncomeTransactions() : Flow<List<Transaction>>
 
     @Query("SELECT * FROM transaction_table WHERE type = 'EXPENSE' order by date desc")
-    fun searchExpenseTransactions() : Flow<Transaction>
+    fun searchExpenseTransactions() : Flow<List<Transaction>>
 
     @Query("SELECT * FROM transaction_table WHERE name LIKE :searchQuery OR description LIKE :searchQuery order by date desc")
-    fun searchTransactionDatabase(searchQuery: String) : Flow<Transaction>
+    fun searchTransactionDatabase(searchQuery: String) : Flow<List<Transaction>>
 
     @Query("SELECT * FROM transaction_table WHERE category = :category order by date desc")
-    fun searchCategoryTransactions(category: Category) : Flow<Transaction>
+    fun searchCategoryTransactions(category: Category) : Flow<List<Transaction>>
 }
