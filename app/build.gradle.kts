@@ -1,9 +1,9 @@
 import java.util.Properties
 
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
-    kotlin("kapt")
+    id("com.android.application")
+    id("kotlin-android")
+    id("com.google.devtools.ksp")
     id("dagger.hilt.android.plugin")
 }
 
@@ -47,7 +47,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.4"
     }
     packaging {
         resources {
@@ -63,7 +63,6 @@ fun getApiKeyGemini(): String {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -80,14 +79,18 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     // Generative AI dependencies
-    implementation("com.google.ai.client.generativeai:generativeai:0.8.0")
+    //implementation("com.google.ai.client.generativeai:generativeai:0.8.0")
     // Room dependencies
     implementation(libs.room.runtime)
-    kapt(libs.room.compiler)
+    ksp(libs.room.compiler)
     implementation(libs.room.ktx)
     // Dagger Hilt dependencies
     implementation(libs.dagger.hilt.android)
-    kapt(libs.dagger.hilt.android.compiler)
+    ksp(libs.androidx.hilt.compiler)
     // DataStore Preferences dependencies
     implementation(libs.datastore.preferences)
+    // Compose Navigation
+    implementation(libs.navigation.compose)
+    // Gson
+    implementation(libs.gson)
 }
