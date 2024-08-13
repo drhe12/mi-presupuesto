@@ -1,5 +1,6 @@
 package com.drhe.mi.presupuesto.data.dao
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -8,6 +9,7 @@ import androidx.room.Update
 import com.drhe.mi.presupuesto.data.models.Category
 import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface CategoryDao {
 
     @Query("SELECT * FROM category_table order by name desc")

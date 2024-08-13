@@ -3,9 +3,11 @@ package com.drhe.mi.presupuesto.data.repositories
 import com.drhe.mi.presupuesto.data.dao.TransactionDao
 import com.drhe.mi.presupuesto.data.models.Category
 import com.drhe.mi.presupuesto.data.models.Transaction
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+@ViewModelScoped
 class TransactionRepository @Inject constructor(private val transactionDao: TransactionDao) {
 
     val getAllTransactions : Flow<List<Transaction>> =
