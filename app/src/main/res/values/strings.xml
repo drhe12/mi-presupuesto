@@ -2,4 +2,11 @@
     <string name="app_name">mi presupuesto</string>
 
     <string name="add_button">Add button</string>
+    <string name="edit_button">Edit button</string>
+    <string name="delete_all_action">Delete All</string>
+    <string name="search_action">Search</string>
+    <string name="close_action">Close</string>
+
+    <!-- Home -->
+    <string name="home_title">Mi Presupuesto</string>
 </resources>
