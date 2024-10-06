@@ -9,7 +9,7 @@ import com.drhe.mi.presupuesto.util.Constants.LIST_ARGUMENT_KEY
 import com.drhe.mi.presupuesto.util.Constants.HOME_SCREEN
 
 fun NavGraphBuilder.homeComposable(
-    navigateToTransactionScreen: (Int) -> Unit
+    navigateToTransactionScreen: (transactionId: Int) -> Unit
 ) {
     composable(
         route = HOME_SCREEN,
