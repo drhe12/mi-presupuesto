@@ -6,11 +6,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.drhe.mi.presupuesto.navigation.destinations.homeComposable
 import com.drhe.mi.presupuesto.navigation.destinations.transactionComposable
+import com.drhe.mi.presupuesto.ui.viewmodels.SharedViewModel
 import com.drhe.mi.presupuesto.util.Constants.HOME_SCREEN
 
 @Composable
 fun SetupNavigation(
-    navController: NavHostController
+    navController: NavHostController,
+    sharedViewModel: SharedViewModel
 ) {
     val screen = remember(navController) {
         Screens(navController = navController)
@@ -21,7 +23,8 @@ fun SetupNavigation(
         startDestination = HOME_SCREEN
     ) {
         homeComposable(
-            navigateToTransactionScreen = screen.transaction
+            navigateToTransactionScreen = screen.transaction,
+            sharedViewModel = sharedViewModel
         )
         transactionComposable(
             navigateToListScreen = screen.home

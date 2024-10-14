@@ -5,11 +5,13 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.drhe.mi.presupuesto.feature.home.ui.HomeScreen
+import com.drhe.mi.presupuesto.ui.viewmodels.SharedViewModel
 import com.drhe.mi.presupuesto.util.Constants.LIST_ARGUMENT_KEY
 import com.drhe.mi.presupuesto.util.Constants.HOME_SCREEN
 
 fun NavGraphBuilder.homeComposable(
-    navigateToTransactionScreen: (transactionId: Int) -> Unit
+    navigateToTransactionScreen: (transactionId: Int) -> Unit,
+    sharedViewModel: SharedViewModel
 ) {
     composable(
         route = HOME_SCREEN,
@@ -19,6 +21,9 @@ fun NavGraphBuilder.homeComposable(
             }
         )
     ) {
-        HomeScreen(navigateToTransactionScreen = navigateToTransactionScreen)
+        HomeScreen(
+            navigateToTransactionScreen,
+            sharedViewModel
+        )
     }
 }
