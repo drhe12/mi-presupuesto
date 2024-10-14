@@ -16,25 +16,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import com.drhe.mi.presupuesto.data.models.Transaction
 import com.drhe.mi.presupuesto.ui.theme.ELEVATION
 import com.drhe.mi.presupuesto.ui.theme.EXTRA_LARGE_PADDING
 import com.drhe.mi.presupuesto.ui.theme.LARGE_PADDING
 
 @Composable
 fun HomeContent(
-    modifier: Modifier
+    modifier: Modifier,
+    transactions: List<Transaction>,
+    navigateToTransactionScreen: (transactionId: Int) -> Unit
 ) {
     Surface(
         modifier = modifier,
         color = MaterialTheme.colorScheme.secondaryContainer
     ) {
-        HomeCard()
+        HomeCard(transactions, navigateToTransactionScreen)
         //HomeBody()
     }
 }
 
 @Composable
-fun HomeCard() {
+fun HomeCard(
+    transactions: List<Transaction>,
+    navigateToTransactionScreen: (transactionId: Int) -> Unit
+) {
     Column(
         modifier = Modifier.padding(
                 top = EXTRA_LARGE_PADDING,
@@ -85,9 +91,9 @@ fun HomeCard() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Column() {
+                Column {
                     Text(
-                        modifier = Modifier.alpha(0.8f),
+                        modifier = Modifier.alpha(0.7f),
                         text = "Ingresos",
                         fontSize = MaterialTheme.typography.labelLarge.fontSize,
                         color = MaterialTheme.colorScheme.secondary
@@ -100,7 +106,7 @@ fun HomeCard() {
                 }
                 Column {
                     Text(
-                        modifier = Modifier.alpha(0.8f),
+                        modifier = Modifier.alpha(0.7f),
                         text = "Egresos",
                         fontSize = MaterialTheme.typography.labelLarge.fontSize,
                         color = MaterialTheme.colorScheme.secondary
@@ -113,12 +119,15 @@ fun HomeCard() {
                 }
             }
         }
-        HomeBody()
+        HomeBody(transactions, navigateToTransactionScreen)
     }
 }
 
 @Composable
-fun HomeBody() {
+fun HomeBody(
+    transactions: List<Transaction>,
+    navigateToTransactionScreen: (transactionId: Int) -> Unit
+) {
     Column(
          modifier = Modifier
              .fillMaxWidth()
@@ -130,6 +139,10 @@ fun HomeBody() {
             text = "Movimientos",
             color = MaterialTheme.colorScheme.secondary,
             fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+        )
+        ListTransaction(
+            transactions,
+            navigateToTransactionScreen
         )
     }
 }

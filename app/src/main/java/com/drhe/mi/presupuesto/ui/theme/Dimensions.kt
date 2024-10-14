@@ -2,6 +2,7 @@ package com.drhe.mi.presupuesto.ui.theme
 
 import androidx.compose.ui.unit.dp
 
+val MINI_SMALL_PADDING = 4.dp
 val SMALL_PADDING = 8.dp
 val MEDIUM_PADDING = 12.dp
 val LARGE_PADDING = 16.dp
